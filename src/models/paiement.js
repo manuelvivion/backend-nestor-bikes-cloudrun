@@ -6,8 +6,22 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
+      PayID: { 
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Le PayID  est requis."}
+        }
+      },
+     XID: { 
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Le XID  est requis."}
+        }
+      },
       contrat_id: { 
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: { msg: "Le contrat id est requis."}
@@ -19,6 +33,41 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty : { msg: "La chaine de doit pas être vide."},
           notNull: { msg: "La ref contrat est une propriété requise."}
+        }
+      },
+      UserData: { 
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Le UserData  est requis."}
+        }
+      },
+      CardHolder: { 
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Le cardholder  est requis."}
+        }
+      },
+      Status: { 
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Le Status  est requis."}
+        }
+      },
+      Code: { 
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Le Code  est requis."}
+        }
+      },
+      Description: { 
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Le Description  est requis."}
         }
       },
       paye: { 

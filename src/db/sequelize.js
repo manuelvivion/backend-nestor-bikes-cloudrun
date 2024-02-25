@@ -99,6 +99,8 @@ const initDb = () => { // init function called in index.js
 }
 
 
+
+
 // Export the initDB function and every Sequelize Models (to use them in all controllers)
 module.exports = { 
   initDb, JourHoraire, Horaire, Article, Tarif, Contrat, ContratArticle, ContratAccess, Spot, Client, Paiement //list of models to export

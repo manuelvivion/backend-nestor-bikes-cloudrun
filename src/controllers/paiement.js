@@ -73,20 +73,21 @@ exports.checkPaiement = (req, res, next) => {
 
   datas = new ParseResponse(decoded);
   let dataObject=datas.parse();
-  //console.log(JSON.stringify(req.body));
+  console.log(dataObject);
   //res.json(dataObject);
 
 
-  //console.log(req.query.refnr);
-  /* let status = 0;
-  if (req.query.Status ==="OK" || req.query.Status==="AUTHORIZED"){
-    status=1;
-  } */
-  /* if(req.query.refnr){ //just to be sure that req is not empty */
      Paiement.create({
-      contrat_id:0,
-      ref_contrat:JSON.stringify(req.body),
-      paye:9
+      PayID:dataObject.PayID,
+      XID:dataObject.XID,
+      contrat_id:dataObject.TransID,
+      ref_contrat:dataObject.refnr,
+      UserData:dataObject.UserData,
+      CardHolder:dataObject.CardHolder,
+      Status:dataObject.Status,
+      Code:dataObject.Code,
+      Description:dataObject.Description,
+      paye:0
     }) // 
          .then(paiement => {
            const message = `Le nouvel paiement a bien été crée.`
@@ -95,12 +96,23 @@ exports.checkPaiement = (req, res, next) => {
          .catch(error => {
            const message = `L paiement n'a pas pu être ajouté. Réessayez dans quelques instants.`
            res.status(500).json({ message, data: error })
-         }) 
-        /* } */
+     }) 
+       
 
 
 
 }; // end of -----------
 
+/* 
+//UTILS
+exports.deleteTablePaiement = (req, res, next) => {
+  Paiement.drop()
+  .then(
+        res.status(201).json({ message:"table effacee"})
+  )
+  .catch(
+    res.status(502).json({ message:"erreur de suppression de la table"})
+  )
+   
 
-
+}; // end of ----------- */

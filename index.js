@@ -24,27 +24,26 @@ const port = parseInt(process.env.PORT) || 8080;
 const app = express();
 app.use(express.json()); // make to app able to read directly req objects as JSON
 
+//CORS Management by adding headers to Req. ---
+app.use((req, res, next) => { 
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
+
 //middleware to manage charset from axepta
 app.use((req, res, next) => { 
-  console.log(req.headers["content-type"]);
-  if(req.headers['content-type'] === 'application/x-www-form-urlencoded;charset=iso-8859-1'){
+  if(req.headers['content-type']==='application/x-www-form-urlencoded; charset=iso-8859-1'){
+    console.log(req.headers["content-type"]);
     req.headers['content-type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-  }
+  } 
   next();
 });
  
 //app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-
-//CORS Management by adding headers to Req. ---
-app.use((req, res, next) => { 
-   
-   res.setHeader('Access-Control-Allow-Origin', '*');
-   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-   next();
- });
 
 
  
