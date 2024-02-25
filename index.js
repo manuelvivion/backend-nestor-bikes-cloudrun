@@ -19,15 +19,16 @@ const paiementRoutes = require('./src/routes/paiement');
 const express = require('express');
 const bodyParser = require('body-parser')
 
-const port = 3000;
+const port = parseInt(process.env.PORT) || 8080;
+
 const app = express();
 app.use(express.json()); // make to app able to read directly req objects as JSON
 
 //middleware to manage charset from axepta
 app.use((req, res, next) => { 
-  //console.log(req.headers["content-type"]);
-  if(req.headers['content-type'] === 'application/x-www-form-urlencoded; charset=iso-8859-1'){
-    req.headers['content-type'] = 'application/x-www-form-urlencoded; charset=utf-8';
+  console.log(req.headers["content-type"]);
+  if(req.headers['content-type'] === 'application/x-www-form-urlencoded;charset=iso-8859-1'){
+    req.headers['content-type'] = 'application/x-www-form-urlencoded;charset=utf-8';
   }
   next();
 });

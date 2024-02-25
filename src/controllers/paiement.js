@@ -85,7 +85,7 @@ exports.checkPaiement = (req, res, next) => {
   /* if(req.query.refnr){ //just to be sure that req is not empty */
      Paiement.create({
       contrat_id:0,
-      ref_contrat:"JSON.stringify(req.body)",
+      ref_contrat:JSON.stringify(req.body),
       paye:9
     }) // 
          .then(paiement => {

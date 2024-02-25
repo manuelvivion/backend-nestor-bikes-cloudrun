@@ -1,7 +1,9 @@
 {
   "name": "backend_nestorbikes",
   "description": "Node JS for cloud run",
-  "scripts": {},
+  "scripts": {
+    "start": "node index.js"
+  },
   "main": "index.js",
   "dependencies": {
     "blowfish-node": "^1.1.4",
