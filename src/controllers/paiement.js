@@ -87,7 +87,7 @@ exports.checkPaiement = (req, res, next) => {
       Status:dataObject.Status,
       Code:dataObject.Code,
       Description:dataObject.Description,
-      paye:0
+      paye:1
     }) // 
          .then(paiement => {
            const message = `Le nouvel paiement a bien été crée.`

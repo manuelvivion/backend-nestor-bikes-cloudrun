@@ -49,14 +49,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       set(types) {
         this.setDataValue('taille', types.join()) //on transforme la STRING en tableau quand on le renvoie (GET)
-      },
+      }/* ,
       validate: {
         isTypesValid(value) {
           if(value.split(',').length > this.qte) {
             throw new Error('trop de taille par rapport à la quantité.')
           }
         }
-      }
+      } */
     },
     prenom: { // prénoms des cyclistes (utile seulement si taille d'article n'est pas "unique")
         type: DataTypes.STRING, // tableau => profondeur = Qté 
@@ -66,14 +66,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         set(types) {
           this.setDataValue('prenom', types.join()) //on transforme la STRING en tableau quand on le renvoie (GET)
-        },
+        }/* ,
         validate: {
           isTypesValid(value) {
             if(value.split(',').length > this.qte) {
               throw new Error('trop de prénom par rapport à la quantité.')
             }
           }
-        }
+        } */
       },
     rendu: { // liste de "pseudo" booléens "0" ou "1" si article rendu ou non
         type: DataTypes.STRING, // tableau => profondeur = Qté  // l'indice correspond à l'indice du prénom correspondant
@@ -83,19 +83,19 @@ module.exports = (sequelize, DataTypes) => {
         },
         set(types) {
           this.setDataValue('rendu', types.join()) //on transforme la STRING en tableau quand on le renvoie (GET)
-        },
+        }/* ,
         validate: {
           isTypesValid(value) {
             if(value.split(',').length > this.qte) {
               throw new Error('trop de rendu par rapport à la quantité.')
             }
           }
-        }
+        } */
       }
 
   }, {
     timestamps: true,
     createdAt: 'created',
-    updatedAt: false
+    updatedAt: true
   })
 }

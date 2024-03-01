@@ -106,7 +106,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty : { msg: "La chaine de doit pas être vide."},
           notNull: { msg: "Le commentaire est une propriété requise."}
         }
       },
@@ -114,7 +113,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty : { msg: "La chaine de doit pas être vide."},
           notNull: { msg: "Le commentaire est une propriété requise."}
         }
       },
@@ -165,7 +163,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty : { msg: "La chaine de doit pas être vide."},
           notNull: { msg: "La garantie est une propriété requise."}
         }
       },
@@ -173,7 +170,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty : { msg: "La chaine de doit pas être vide."},
           notNull: { msg: "La garantie est une propriété requise."}
         }
       }

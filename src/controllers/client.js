@@ -45,6 +45,32 @@ exports.getOneClient = (req, res, next) => {
     })
 }; // end of ------
 
+// --------- get one horaire by id -------
+exports.findOneClient = (req, res, next) => {
+  Client.findAll({
+    where: { //... looking for client where ...
+      [Op.or]: [
+        {tel: req.params.tel}, //... phone number match the one sent in url and...
+        {email: req.params.email} //...or email match the one sent in url (req.params)
+      ]
+    },
+  })
+    .then(client => {
+      
+      if(client === null || client.length===0) {
+        const message = `L client demandé n'existe pas. Réessayez avec un autre tel ou mail.`
+        return res.status(230).json({ message })
+      }
+
+      const message = 'Un client a bien été trouvé.'
+      res.status(200).json({ message, data: client})
+    })
+    .catch(error => {
+      const message = `L client n'a pas pu être récupéré. Réessayez dans quelques instants.`
+      res.status(500).json({ message, data: error })
+    })
+}; // end of ------
+
 
 
 // ---POST ROUTES ---
@@ -62,6 +88,35 @@ exports.createClient = (req, res, next) => {
 
 }; // end of -----------
 
+// ---PUT ROUTES ---
+// --------- Create client -------
+exports.updateClient = (req, res, next) => {
+       //Client.update(req.body ) //use sequelize 'create' method with infos sent in the request body (json object)
+         Client.update(req.body, {
+          where: {
+             id_client: req.params.id,
+          },
+        }) 
+         .then(
+              Client.findAll({
+              where: { 
+                  id_client: req.params.id
+                }
+              })
+              .then(client => {
+                if(client === null || client.length===0) {
+                  const message = `L client demandé n'existe pas. Réessayez avec un autre tel ou mail.`
+                  return res.status(230).json({ message })
+                }
+                const message = 'Un client a bien été modifié.'
+                res.status(200).json({ message, data: client})
+             }) //end then promise find
+         .catch(error => {
+           const message = `L client n'a pas pu être modifié. Réessayez dans quelques instants.`
+           res.status(500).json({ message, data: error })
+         })
+      )//end then promise update
+}; // end of -----------
 
 
 

@@ -98,7 +98,13 @@ const initDb = () => { // init function called in index.js
   })
 }
 
-
+/* // Init SQLite database
+const upDateTable = () => { // init function called in index.js
+  return ContratArticle.sync({force:true}).then(_ => { // Sequelize sync all the models with actual sqlite db file
+    console.log('La table contrat artcle a bien été modifiée !')
+  })
+}
+ */
 
 
 // Export the initDB function and every Sequelize Models (to use them in all controllers)
